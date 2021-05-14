@@ -26,6 +26,7 @@ public class TKBSVForm extends javax.swing.JFrame {
 
     public TKBSVForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
         addSubject(panelT2, "100", "T2");
         addSubject(panelT3, "100", "T3");
         addSubject(panelT4, "100", "T4");
@@ -106,6 +107,7 @@ public class TKBSVForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelT2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 168, 185), 2, true));
+        panelT2.setToolTipText("Thời khóa biểu");
         panelT2.setPreferredSize(new java.awt.Dimension(220, 612));
 
         javax.swing.GroupLayout panelT2Layout = new javax.swing.GroupLayout(panelT2);

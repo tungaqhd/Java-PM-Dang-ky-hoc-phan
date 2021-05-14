@@ -28,6 +28,7 @@ public class LopForm extends javax.swing.JFrame {
     int idx;
     public LopForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
         HienThi();
         
         cbxChuongTrinh.addItem("Thường");
@@ -71,6 +72,7 @@ public class LopForm extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản lý lớp");
 
         lopTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

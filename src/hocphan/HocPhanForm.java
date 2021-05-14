@@ -21,6 +21,7 @@ public class HocPhanForm extends javax.swing.JFrame {
      */
     public HocPhanForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
         HienThi();
     }
     
@@ -66,6 +67,7 @@ public class HocPhanForm extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản lý học phần");
 
         hocPhanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

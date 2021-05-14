@@ -144,6 +144,7 @@
                 </LineBorder>
               </Border>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Th&#x1edd;i kh&#xf3;a bi&#x1ec3;u"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[220, 612]"/>
             </Property>
