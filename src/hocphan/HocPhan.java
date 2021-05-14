@@ -5,6 +5,8 @@
  */
 package hocphan;
 
+import java.util.Objects;
+
 /**
  *
  * @author tunga
@@ -12,6 +14,10 @@ package hocphan;
 public class HocPhan {
     String ma_in, ma_hp, ten_hp;
     int tc_lt, tc_th, tc_khac;
+
+    public HocPhan(String ma_hp) {
+        this.ma_hp = ma_hp;
+    }
 
     public HocPhan(String ma_in, String ma_hp, String ten_hp, int tc_lt, int tc_th, int tc_khac) {
         this.ma_in = ma_in;
@@ -68,6 +74,29 @@ public class HocPhan {
 
     public void setTc_khac(int tc_khac) {
         this.tc_khac = tc_khac;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.ma_hp);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HocPhan other = (HocPhan) obj;
+        
+        return this.ma_hp.equals(other.ma_hp);
     }
     
     
