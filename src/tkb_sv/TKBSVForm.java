@@ -48,7 +48,8 @@ public class TKBSVForm extends javax.swing.JFrame {
         for (int i = 0; i < dsTiet.size(); ++i) {
             ChiTietDangKyHoc curr = dsTiet.get(i);
             int height = (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau() + 1) * 40 + 3 * (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau());
-            
+            System.out.println(curr.getTiet_bat_dau() + " " + curr.getTiet_ket_thuc() + " " + height);
+            System.out.println(height);
             JLabel mon = new JLabel();
             mon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             mon.setFont(new java.awt.Font("Tahoma", 0, 10));
@@ -105,6 +106,7 @@ public class TKBSVForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Thời khóa biểu");
 
         panelT2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 168, 185), 2, true));
         panelT2.setToolTipText("Thời khóa biểu");
@@ -234,8 +236,8 @@ public class TKBSVForm extends javax.swing.JFrame {
         panelChinhLayout.setHorizontalGroup(
             panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChinhLayout.createSequentialGroup()
-                .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelChinhLayout.createSequentialGroup()
+                .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelChinhLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panelT2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,19 +245,17 @@ public class TKBSVForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelT7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelChinhLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(80, 80, 80)
                         .addComponent(jLabel1)
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(151, 151, 151)
                         .addComponent(jLabel3)
                         .addGap(75, 75, 75)))
                 .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelT4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelChinhLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelT4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelChinhLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(73, 73, 73)
                         .addComponent(jLabel4)))
                 .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelChinhLayout.createSequentialGroup()
@@ -265,17 +265,17 @@ public class TKBSVForm extends javax.swing.JFrame {
                         .addComponent(panelT6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelCN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(panelChinhLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(151, 151, 151)
                         .addComponent(jLabel6)
-                        .addGap(130, 130, 130)
+                        .addGap(138, 138, 138)
                         .addComponent(jLabel7)
-                        .addGap(43, 43, 43))))
+                        .addGap(75, 75, 75))))
             .addGroup(panelChinhLayout.createSequentialGroup()
-                .addGap(537, 537, 537)
+                .addGap(598, 598, 598)
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

@@ -5,11 +5,16 @@
  */
 package lop;
 
+import chinh.HandledException;
 import hocphan.HocPhan;
 import hocphan.HocPhanDB;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import phong.Phong;
+import phong.PhongDB;
+import su_dung_phong.SuDungPhong;
+import su_dung_phong.SuDungPhongDB;
 
 /**
  *
@@ -22,28 +27,50 @@ public class LopForm extends javax.swing.JFrame {
      */
     LopDB dbLop = new LopDB();
     HocPhanDB dbHP = new HocPhanDB();
-    
+    PhongDB phongDB = new PhongDB();
+    SuDungPhongDB sdPhongDB = new SuDungPhongDB();
+
     ArrayList<Lop> ds;
     ArrayList<HocPhan> dsHp;
+    ArrayList<Phong> dsPhong;
     int idx;
+
     public LopForm() {
         initComponents();
         this.setLocationRelativeTo(null);
         HienThi();
-        
+
         cbxChuongTrinh.addItem("Thường");
         cbxChuongTrinh.addItem("CDIO");
-        
+
         dsHp = dbHP.getHocPhan();
-        for(HocPhan hp: dsHp)
-        {
-             cbxMaHP.addItem(hp.getMa_hp()+" - "+hp.getTen_hp());
+        for (HocPhan hp : dsHp) {
+            cbxMaHP.addItem(hp.getMa_hp() + " - " + hp.getTen_hp());
         }
     }
-    
+
     private void HienThi() {
         ds = dbLop.getLop();
         lopTable.setModel(new LopTable(ds));
+
+        HienThiPhong();
+    }
+
+    private void HienThiPhong() {
+        cbxPhong.removeAllItems();
+        dsPhong = phongDB.getDSPhong();
+        for (Phong p : dsPhong) {
+            cbxPhong.addItem(p.getThongTin());
+        }
+    }
+    
+    private void resetForm() {
+        txtMaLop.setText("");
+        txtTenLop.setText("");
+        txtSiSo.setText("");
+        txtTietBD.setText("");
+        txtTietKT.setText("");
+        HienThiPhong();
     }
 
     /**
@@ -69,6 +96,17 @@ public class LopForm extends javax.swing.JFrame {
         cbxMaHP = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
+        btnMo = new javax.swing.JButton();
+        cbxPhong = new javax.swing.JComboBox<>();
+        cbxThu = new javax.swing.JComboBox<>();
+        txtTietKT = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtTietBD = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnTim = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,7 +130,7 @@ public class LopForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lopTable);
 
-        jLabel1.setText("Mã lớp");
+        jLabel1.setText("Mã lớp:");
 
         jLabel2.setText("Tên lớp:");
 
@@ -101,6 +139,12 @@ public class LopForm extends javax.swing.JFrame {
         jLabel4.setText("Sĩ số:");
 
         jLabel5.setText("Học phần:");
+
+        cbxChuongTrinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxChuongTrinhActionPerformed(evt);
+            }
+        });
 
         cbxMaHP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +172,43 @@ public class LopForm extends javax.swing.JFrame {
             }
         });
 
+        btnMo.setText("Mở ngành");
+        btnMo.setMaximumSize(new java.awt.Dimension(60, 30));
+        btnMo.setMinimumSize(new java.awt.Dimension(60, 30));
+        btnMo.setPreferredSize(new java.awt.Dimension(60, 30));
+        btnMo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoActionPerformed(evt);
+            }
+        });
+
+        cbxThu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T2", "T3", "T4", "T5", "T6", "T7", "CN" }));
+
+        jLabel6.setText("Bắt đầu");
+
+        jLabel7.setText("Kết thúc");
+
+        jLabel8.setText("Phòng:");
+
+        jLabel9.setText("Thứ:");
+
+        btnTim.setText("Tìm phòng");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.setMaximumSize(new java.awt.Dimension(60, 30));
+        btnReset.setMinimumSize(new java.awt.Dimension(60, 30));
+        btnReset.setPreferredSize(new java.awt.Dimension(60, 30));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         btnXoa.setText("Xóa");
         btnXoa.setMaximumSize(new java.awt.Dimension(60, 30));
         btnXoa.setMinimumSize(new java.awt.Dimension(60, 30));
@@ -144,7 +225,7 @@ public class LopForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
@@ -169,12 +250,34 @@ public class LopForm extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(226, 422, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxThu, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTietBD, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTietKT, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)))))
+                .addGap(103, 103, 103)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnMo, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,35 +286,56 @@ public class LopForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(cbxPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(cbxChuongTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbxChuongTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cbxMaHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 20, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(cbxThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTietBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTietKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(cbxMaHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnMo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("Mã lớp:");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,22 +353,52 @@ public class LopForm extends javax.swing.JFrame {
         txtSiSo.setText(String.valueOf(lop.getSi_so()));
         txtTenLop.setText(lop.getTen_lop());
         cbxChuongTrinh.setSelectedIndex(lop.getCdio());
-        
+
         int hpIdx = dsHp.indexOf(new HocPhan(lop.getMa_hp()));
         txtSiSo.setText(hpIdx + "");
-        
+
         cbxMaHP.setSelectedIndex(hpIdx);
     }//GEN-LAST:event_lopTableMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        String maLop = txtMaLop.getText();
-        String tenLop = txtTenLop.getText();
-        int cdio = cbxChuongTrinh.getSelectedIndex();
-        int siSo = Integer.parseInt(txtSiSo.getText());
+        int idxPhong;
+        String thu;
+        int tietBD;
+        int tietKT;
+        String maLop;
+        String tenLop;
+        int cdio;
+        int siSo;
+        try {
+            maLop = txtMaLop.getText();
+            tenLop = txtTenLop.getText();
+            cdio = cbxChuongTrinh.getSelectedIndex();
+            siSo = Integer.parseInt(txtSiSo.getText());
+
+            idxPhong = cbxPhong.getSelectedIndex();
+            thu = cbxThu.getSelectedItem().toString();
+            tietBD = Integer.parseInt(txtTietBD.getText());
+            tietKT = Integer.parseInt(txtTietKT.getText());
+            if (tietBD <= 0 || tietKT <= 0 || tietBD > 16 || tietKT > 16) {
+                throw new IllegalArgumentException("Tiết không hợp lệ");
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idPhong = dsPhong.get(idxPhong).getMa_phong();
+        if (!sdPhongDB.checkSDPhong(thu, idPhong, tietBD, tietKT)) {
+            JOptionPane.showMessageDialog(null, "Phòng này không trống trong khoảng thời gian đã chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String[] maHP = cbxMaHP.getSelectedItem().toString().split(" - ");
         dbLop.addHocPhan(maLop, tenLop, cdio, siSo, maHP[0]);
+        sdPhongDB.addSDPhong(maLop, thu, idPhong, tietBD, tietKT);
         HienThi();
+        resetForm();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -257,6 +411,46 @@ public class LopForm extends javax.swing.JFrame {
         dbLop.editHocPhan(maLop, tenLop, cdio, siSo, maHP[0]);
         HienThi();
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnMoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoActionPerformed
+        // TODO add your handling code here:
+        MoLopForm mlF = new MoLopForm();
+        mlF.maLop = txtMaLop.getText();
+        mlF.setVisible(true);
+    }//GEN-LAST:event_btnMoActionPerformed
+
+    private void cbxChuongTrinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChuongTrinhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxChuongTrinhActionPerformed
+
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        String thu;
+        int tietBD;
+        int tietKT;
+        try {
+            thu = cbxThu.getSelectedItem().toString();
+            tietBD = Integer.parseInt(txtTietBD.getText());
+            tietKT = Integer.parseInt(txtTietKT.getText());
+            if (tietBD <= 0 || tietKT <= 0 || tietBD > 16 || tietKT > 16) {
+                throw new IllegalArgumentException("Tiết không hợp lệ");
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        dsPhong = phongDB.timPhong(thu, tietBD, tietKT);
+        
+        cbxPhong.removeAllItems();
+        for (Phong p : dsPhong) {
+            cbxPhong.addItem(p.getThongTin());
+        }
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        resetForm();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
@@ -300,20 +494,31 @@ public class LopForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMo;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTim;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbxChuongTrinh;
     private javax.swing.JComboBox<String> cbxMaHP;
+    private javax.swing.JComboBox<String> cbxPhong;
+    private javax.swing.JComboBox<String> cbxThu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable lopTable;
     private javax.swing.JTextField txtMaLop;
     private javax.swing.JTextField txtSiSo;
     private javax.swing.JTextField txtTenLop;
+    private javax.swing.JTextField txtTietBD;
+    private javax.swing.JTextField txtTietKT;
     // End of variables declaration//GEN-END:variables
 }

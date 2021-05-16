@@ -103,7 +103,7 @@ public class Algo {
                     ChiTietDangKyHoc ct = new ChiTietDangKyHoc(curr.getThu(), 1, curr.getTiet_bat_dau()- 1);
                     rs.add(ct);
                 }
-            } else if (curr.getTiet_bat_dau() != ds.get(i - 1).getTiet_ket_thuc() + 1) {
+            } else if (curr.getTiet_bat_dau() != ds.get(i - 1).getTiet_ket_thuc()+1) {
                 ChiTietDangKyHoc ct = new ChiTietDangKyHoc(curr.getThu(), ds.get(i - 1).getTiet_ket_thuc() + 1, curr.getTiet_bat_dau()-1);
                 rs.add(ct);
             }

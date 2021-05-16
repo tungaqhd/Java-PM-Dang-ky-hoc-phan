@@ -3,9 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/tkb_sv/Algo.java</file>
-            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/tkb_sv/TKBSVFormTest.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/nganh/Nganh.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/phong/Phong.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/gv_xem_ds_lop/GiangVienLopDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/tkb_sv/TKBDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/lop/MoLopDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/nganh/NganhTable.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/gv_xem_ds_lop/DSLopMo.java</file>
             <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/tkb_sv/TKBSVForm.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/sinhvien_xem_ds_lop_mo/SinhVienDSLopForm.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/lop/LopForm.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/nganh/NganhDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/hocphan/HocPhanDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/lop/MoLopForm.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/lop/Lop.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/hocphan/HocPhanForm.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/lop/LopDB.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/chinh/SinhVien.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/hocphan/HocPhanTable.java</file>
+            <file>file:/C:/Users/tunga/Documents/BTL/Java/BTL_PM_Dang_Ky_Mon_Hoc/src/phong/PhongDB.java</file>
         </group>
     </open-files>
 </project-private>

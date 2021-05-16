@@ -63,7 +63,7 @@ public class ChiTietDangKyHoc {
                 tiets += ")";
             }
         }
-        String phong = ten_phong + " - Cơ sở " + co_so;
+        String phong = ten_phong + " - " + toa_nha + " - Cơ sở " + co_so;
         String gv = ho_ten + " - " + sdt;
         String rs = "<html><body style='text-align: center;'>"+ten_hp+"<br />"+tiets+" - "+phong+"<br />"+gv+"</body></html>";
         return rs;

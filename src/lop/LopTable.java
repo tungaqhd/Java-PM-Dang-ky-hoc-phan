@@ -14,8 +14,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class LopTable extends AbstractTableModel {
     
-    private String name[]={"Mã lớp", "Tên lớp","CDIO","Sĩ số", "Mã học phần"};
-    private Class classes[]={String.class, String.class, Integer.class, Integer.class, String.class};
+    private String name[]={"Mã lớp", "Tên lớp","CDIO","Sĩ số", "Mã học phần", "Tên giảng viên", "Tiết bắt đầu", "Tiết kết thúc", "Thứ", "Địa điểm"};
+    private Class classes[]={String.class, String.class, Integer.class, Integer.class, String.class, String.class, Integer.class, Integer.class, String.class, String.class};
     
     ArrayList<Lop> ds = new ArrayList<Lop>();
 
@@ -45,6 +45,11 @@ public class LopTable extends AbstractTableModel {
             case 2: return ds.get(rowIndex).getCdio();
             case 3: return ds.get(rowIndex).getSi_so();
             case 4: return ds.get(rowIndex).getMa_hp();
+            case 5: return ds.get(rowIndex).getHo_ten();
+            case 6: return ds.get(rowIndex).getTiet_bat_dau();
+            case 7: return ds.get(rowIndex).getTiet_ket_thuc();
+            case 8: return ds.get(rowIndex).getThu();
+            case 9: return ds.get(rowIndex).getDiaDiem();
             default :return null;
         }
     }
