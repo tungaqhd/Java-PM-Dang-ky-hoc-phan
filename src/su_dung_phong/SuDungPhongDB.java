@@ -6,7 +6,6 @@
 package su_dung_phong;
 
 import chinh.Database;
-import dangnhap_gv.GV;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,6 +60,26 @@ public class SuDungPhongDB extends Database {
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Thêm thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
+        }
+        return affectedRow;
+    }
+    
+    public int updateSDPhong(String maLop, String thu, int maPhong, int tietBD, int tietKT) {
+        int affectedRow = 0;
+        String insertSQL = "UPDATE su_dung_phong SET ma_phong = ?, thu = ?, tiet_bat_dau = ?, tiet_ket_thuc = ? WHERE ma_lop = ?";
+        try {
+            openConnection();
+            PreparedStatement preStmt = cnn.prepareStatement(insertSQL);
+            preStmt.setInt(1, maPhong);
+            preStmt.setString(2, thu);
+            preStmt.setInt(3, tietBD);
+            preStmt.setInt(4, tietKT);
+            preStmt.setString(5, maLop);
+            affectedRow = preStmt.executeUpdate();
+            closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
         }
         return affectedRow;
     }

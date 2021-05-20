@@ -59,4 +59,22 @@ public class PhongDB extends Database{
         }
         return dsPhong;
     }
+    
+    public Phong getPhongByMaLop(String maLop) {
+        Phong p = null;
+        String getSQL = "SELECT * FROM phong WHERE ma_phong IN (SELECT ma_phong FROM su_dung_phong WHERE ma_lop = ?)";
+        try {
+            openConnection();
+            PreparedStatement preStmt = cnn.prepareStatement(getSQL);
+            preStmt.setString(1, maLop);
+            rs = preStmt.executeQuery();
+            if(rs.next()) {
+                p = new Phong(rs.getInt("ma_phong"), rs.getString("ten_phong"), rs.getString("toa_nha"), rs.getInt("co_so"));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return p;
+    }
 }

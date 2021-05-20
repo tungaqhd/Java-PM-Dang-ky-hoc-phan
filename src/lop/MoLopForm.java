@@ -15,7 +15,7 @@ import nganh.NganhTable;
  *
  * @author tunga
  */
-public class MoLopForm extends javax.swing.JFrame {
+public class MoLopForm extends javax.swing.JDialog {
 
     /**
      * Creates new form MoLopForm
@@ -26,17 +26,24 @@ public class MoLopForm extends javax.swing.JFrame {
     public String maLop;
     int idxMo = -1;
     int idxChuaMo = -1;
-    public MoLopForm() {
+    public MoLopForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        HienThi();
+        this.setLocationRelativeTo(null);
     }
 
     private void HienThi() {
         daMo = nganhDB.getNganhDaMo(maLop);
         chuaMo = nganhDB.getNganhChuaMo(maLop);
         
-        System.out.println(daMo);
-        System.out.println(chuaMo);
+        tblMo.setModel(new NganhTable(daMo));
+        tblNganh.setModel(new NganhTable(chuaMo));
+    }
+
+    public void setMaLop(String mL) {
+        maLop = mL;
+        daMo = nganhDB.getNganhDaMo(mL);
+        chuaMo = nganhDB.getNganhChuaMo(mL);
         
         tblMo.setModel(new NganhTable(daMo));
         tblNganh.setModel(new NganhTable(chuaMo));
@@ -51,16 +58,34 @@ public class MoLopForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblNganh = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblMo = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblNganh = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblMo = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        btnThem.setText("Thêm >>");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+
+        btnXoa.setText("<< Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Các ngành chưa mở");
+
+        jLabel2.setText("Các ngành đã mở");
 
         tblNganh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,24 +123,6 @@ public class MoLopForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblMo);
 
-        btnThem.setText("Thêm >>");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
-            }
-        });
-
-        btnXoa.setText("<< Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Các ngành chưa mở");
-
-        jLabel2.setText("Các ngành đã mở");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +137,7 @@ public class MoLopForm extends javax.swing.JFrame {
                             .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -159,16 +166,6 @@ public class MoLopForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblNganhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNganhMouseClicked
-        // TODO add your handling code here:
-        idxChuaMo = tblNganh.getSelectedRow();
-    }//GEN-LAST:event_tblNganhMouseClicked
-
-    private void tblMoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMoMouseClicked
-        // TODO add your handling code here:
-        idxMo = tblMo.getSelectedRow();
-    }//GEN-LAST:event_tblMoMouseClicked
-
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         if(idxChuaMo == -1) {
@@ -186,6 +183,16 @@ public class MoLopForm extends javax.swing.JFrame {
         nganhDB.xoaMoNganh(daMo.get(idxMo).getMa_nganh(), maLop);
         HienThi();
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblNganhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNganhMouseClicked
+        // TODO add your handling code here:
+        idxChuaMo = tblNganh.getSelectedRow();
+    }//GEN-LAST:event_tblNganhMouseClicked
+
+    private void tblMoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMoMouseClicked
+        // TODO add your handling code here:
+        idxMo = tblMo.getSelectedRow();
+    }//GEN-LAST:event_tblMoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -213,11 +220,19 @@ public class MoLopForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MoLopForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MoLopForm().setVisible(true);
+                MoLopForm dialog = new MoLopForm(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

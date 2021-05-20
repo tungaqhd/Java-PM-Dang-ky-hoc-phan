@@ -5,6 +5,7 @@
  */
 package tkb_sv;
 
+import chinh.SinhVien;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.GroupLayout.ParallelGroup;
@@ -23,17 +24,21 @@ public class TKBSVForm extends javax.swing.JFrame {
      * Creates new form TKBSVForm
      */
     Algo al = new Algo();
-
+    
     public TKBSVForm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        addSubject(panelT2, "100", "T2");
-        addSubject(panelT3, "100", "T3");
-        addSubject(panelT4, "100", "T4");
-        addSubject(panelT5, "100", "T5");
-        addSubject(panelT6, "100", "T6");
-        addSubject(panelT7, "100", "T7");
-        addSubject(panelCN, "100", "CN");
+    }
+    
+    public void LoadTKB(SinhVien sv)
+    {
+        addSubject(panelT2, sv.getMa_sv(), "T2");
+        addSubject(panelT3, sv.getMa_sv(), "T3");
+        addSubject(panelT4, sv.getMa_sv(), "T4");
+        addSubject(panelT5, sv.getMa_sv(), "T5");
+        addSubject(panelT6, sv.getMa_sv(), "T6");
+        addSubject(panelT7, sv.getMa_sv(), "T7");
+        addSubject(panelCN, sv.getMa_sv(), "CN");
     }
 
     private void addSubject(JPanel panelThu, String msv, String thu) {
@@ -176,7 +181,7 @@ public class TKBSVForm extends javax.swing.JFrame {
         );
         panelT6Layout.setVerticalGroup(
             panelT6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panelT7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 168, 185), 2, true));
@@ -190,7 +195,7 @@ public class TKBSVForm extends javax.swing.JFrame {
         );
         panelT7Layout.setVerticalGroup(
             panelT7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 687, Short.MAX_VALUE)
         );
 
         panelCN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 168, 185), 2));
@@ -243,7 +248,7 @@ public class TKBSVForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelT3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelT7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelT4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelChinhLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jLabel1)
@@ -253,19 +258,19 @@ public class TKBSVForm extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(75, 75, 75)))
                 .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelT4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelT5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelChinhLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jLabel4)))
                 .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelChinhLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelT5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelT6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelT7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelCN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelChinhLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
@@ -295,10 +300,10 @@ public class TKBSVForm extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelChinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelT5, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                     .addComponent(panelT6, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                    .addComponent(panelT7, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                    .addComponent(panelT5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                     .addComponent(panelT4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
-                    .addComponent(panelT7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                     .addComponent(panelT3, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                     .addComponent(panelT2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                     .addComponent(panelCN, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))

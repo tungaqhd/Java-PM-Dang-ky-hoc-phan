@@ -57,4 +57,28 @@ public class Phong {
     public void setCo_so(int co_so) {
         this.co_so = co_so;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Phong other = (Phong) obj;
+        if (this.ma_phong != other.ma_phong) {
+            return false;
+        }
+        return true;
+    }
 }

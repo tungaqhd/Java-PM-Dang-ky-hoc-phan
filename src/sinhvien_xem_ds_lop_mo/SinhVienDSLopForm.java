@@ -7,6 +7,7 @@ package sinhvien_xem_ds_lop_mo;
 
 import chinh.SinhVien;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import lop.Lop;
 import lop.LopDB;
 import lop.LopTable;
@@ -15,22 +16,46 @@ import lop.LopTable;
  *
  * @author tunga
  */
-public class SinhVienDSLopForm extends javax.swing.JFrame {
+public class SinhVienDSLopForm extends javax.swing.JDialog {
 
     /**
-     * Creates new form SinhVienDSLopForm
+     * Creates new form NewJDialog
      */
-    SinhVien sv = new SinhVien("001", 1);
-    ArrayList<Lop> ds;
-    LopDB dbLop = new LopDB();
-    public SinhVienDSLopForm() {
+    private SinhVien sv;
+    DangKyHocDB dangKyHocDB = new DangKyHocDB();
+    LopDB lopDB = new LopDB();
+    ArrayList<LopSV> ds;
+    int idxLop;
+
+    public SinhVienDSLopForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        HienThi();
+        this.setLocationRelativeTo(null);
+    }
+
+    public void setSinhVien(SinhVien s) {
+        sv = s;
+        ds = dangKyHocDB.getLop(s.getMa_nganh());
+        for (int i = 0; i < ds.size(); ++i) {
+            if (dangKyHocDB.daDangKy(sv.getMa_sv(), ds.get(i).getMa_lop())) {
+                ds.get(i).setTrangThai("Đã đăng ký");
+            } else {
+                ds.get(i).setTrangThai("Chưa đăng ký");
+            }
+        }
+        lopTable.setModel(new LopMoSVTable(ds));
     }
 
     private void HienThi() {
-        ds = dbLop.getLop(sv.getMa_nganh());
-        lopTable.setModel(new LopTable(ds));
+        ds = dangKyHocDB.getLop(sv.getMa_nganh());
+        for (int i = 0; i < ds.size(); ++i) {
+            if (dangKyHocDB.daDangKy(sv.getMa_sv(), ds.get(i).getMa_lop())) {
+                ds.get(i).setTrangThai("Đã đăng ký");
+            } else {
+                ds.get(i).setTrangThai("Chưa đăng ký");
+            }
+        }
+        lopTable.setModel(new LopMoSVTable(ds));
     }
 
     /**
@@ -47,7 +72,8 @@ public class SinhVienDSLopForm extends javax.swing.JFrame {
         btnDangKy = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Đăng ký học phần");
 
         lopTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,11 +86,26 @@ public class SinhVienDSLopForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        lopTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lopTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lopTable);
 
         btnDangKy.setText("Đăng ký lớp");
+        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangKyActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Hủy lớp");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +124,7 @@ public class SinhVienDSLopForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangKy)
                     .addComponent(btnHuy))
@@ -94,6 +135,47 @@ public class SinhVienDSLopForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lopTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lopTableMouseClicked
+        // TODO add your handling code here:
+        idxLop = lopTable.getSelectedRow();
+    }//GEN-LAST:event_lopTableMouseClicked
+
+    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
+        // TODO add your handling code here:
+        try {
+            LopSV lop = ds.get(idxLop);
+            if (idxLop == -1) {
+                throw new IllegalArgumentException("Vui lòng chọn một lớp");
+            } else if (!dangKyHocDB.checkTrungLich(sv.getMa_sv(), lop.getTiet_bat_dau(), lop.getTiet_ket_thuc(), lop.getThu())) {
+                throw new IllegalArgumentException("Lớp này trùng lịch với một lớp đã đăng ký");
+            } else if (lop.getTrangThai() == "Đã đăng ký") {
+                throw new IllegalArgumentException("Bạn đã đăng ký lớp này rồi");
+            } else if(lop.getSo_luong() >= lop.getSi_so()) {
+                throw new IllegalArgumentException("Lớp này đã đầy");
+            }
+            dangKyHocDB.dangKyHoc(lop.getMa_lop(), sv.getMa_sv());
+            lopDB.updateSL(lop.getMa_lop(), 1);
+            HienThi();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDangKyActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        LopSV lop = ds.get(idxLop);
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (lop.getTrangThai() == "Chưa đăng ký") {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa đăng ký môn này", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        dangKyHocDB.huyDangKy(lop.getMa_lop(), sv.getMa_sv());
+        lopDB.updateSL(lop.getMa_lop(), -1);
+        HienThi();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,11 +203,19 @@ public class SinhVienDSLopForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SinhVienDSLopForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SinhVienDSLopForm().setVisible(true);
+                SinhVienDSLopForm dialog = new SinhVienDSLopForm(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
