@@ -6,8 +6,20 @@
 package gv_xem_lop_day;
 
 import chinh.SinhVien;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 import lop.LopDB;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -20,6 +32,7 @@ public class ChiTietLop extends javax.swing.JDialog {
      */
     LopDB lopDB = new LopDB();
     ArrayList<SinhVien> ds;
+    String maLop;
 
     public ChiTietLop(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,8 +40,9 @@ public class ChiTietLop extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    public void getSinhVien(String maLop) {
-        ds = lopDB.getSV(maLop);
+    public void getSinhVien(String ml) {
+        maLop = ml;
+        ds = lopDB.getSV(ml);
         sinhVienTable.setModel(new ChiTietLopTable(ds));
     }
 
@@ -62,6 +76,11 @@ public class ChiTietLop extends javax.swing.JDialog {
         jScrollPane1.setViewportView(sinhVienTable);
 
         btnXuat.setText("Xuất ra file Excel");
+        btnXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +107,55 @@ public class ChiTietLop extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
+        // TODO add your handling code here:        
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet(maLop);
+        String[] headers = {"Mã sinh viên", "Họ và tên", "Email"};
+        
+            Row rowHead = sheet.createRow(0);
+            Cell cellMSVHead = rowHead.createCell(0);
+            cellMSVHead.setCellValue("Mã sinh viên");
+            Cell cellHoTenHead = rowHead.createCell(1);
+            cellHoTenHead.setCellValue("Họ và tên");
+            Cell cellEmailHead = rowHead.createCell(2);
+            cellEmailHead.setCellValue("Email");
+            
+
+        for (int i = 0; i < ds.size(); ++i) {
+            Row row = sheet.createRow(i + 1);
+            Cell cellMSV = row.createCell(0);
+            cellMSV.setCellValue(ds.get(i).getMa_sv());
+            Cell cellHoTen = row.createCell(1);
+            cellHoTen.setCellValue(ds.get(i).getHo_ten());
+            Cell cellEmail = row.createCell(2);
+            cellEmail.setCellValue(ds.get(i).getEmail());
+        }
+
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setDialogTitle("Lưu danh sách sinh viên");
+        jFileChooser.addChoosableFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.getName().endsWith("xlsx");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Excel Documents (*.xlsx)";
+            }
+        });
+        int rs = jFileChooser.showSaveDialog(this);
+        if (rs == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = jFileChooser.getSelectedFile();
+            try (FileOutputStream outputStream = new FileOutputStream(fileToSave.getAbsolutePath())) {
+                workbook.write(outputStream);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Có lỗi khi lưu file", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnXuatActionPerformed
 
     /**
      * @param args the command line arguments

@@ -50,8 +50,6 @@ public class Algo {
                 rs.add(ct);
             }
         }
-        System.out.println(ds);
-        System.out.println(rs);
 //        ArrayList<Integer> dsTiet = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 7, 8, 9, 13, 15, 17));
 //        ArrayList<Integer> dsTiet2 = new ArrayList<Integer>(Arrays.asList(3, 4, 5, 8, 9, 10, 11, 12, 16, 17));
 //        ArrayList<Integer> dsTiet3 = new ArrayList<Integer>(Arrays.asList(6, 7, 8, 11, 12, 15, 16, 17));

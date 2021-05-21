@@ -5,6 +5,7 @@
  */
 package chinh;
 
+import chinh.GiangVien;
 import gv_xem_ds_lop.DSLopMoChoGV;
 import gv_xem_lop_day.GVLopForm;
 import lich_giang_day.LichGiangDay;

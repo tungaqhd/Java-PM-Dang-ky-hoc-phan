@@ -77,7 +77,6 @@ public class QTVPanel extends javax.swing.JFrame {
         lopTable = new javax.swing.JTable();
         btnMoLop = new javax.swing.JButton();
         btnPhanCong = new javax.swing.JButton();
-        panelPH = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,7 +128,7 @@ public class QTVPanel extends javax.swing.JFrame {
             .addGroup(panelHPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelHPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                     .addGroup(panelHPLayout.createSequentialGroup()
                         .addComponent(btnThemHp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,7 +212,7 @@ public class QTVPanel extends javax.swing.JFrame {
             .addGroup(panelLHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                     .addGroup(panelLHLayout.createSequentialGroup()
                         .addComponent(btnThemLop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,19 +241,6 @@ public class QTVPanel extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Lớp Học", new javax.swing.ImageIcon(getClass().getResource("/images/classroom-64.png")), panelLH); // NOI18N
-
-        javax.swing.GroupLayout panelPHLayout = new javax.swing.GroupLayout(panelPH);
-        panelPH.setLayout(panelPHLayout);
-        panelPHLayout.setHorizontalGroup(
-            panelPHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
-        );
-        panelPHLayout.setVerticalGroup(
-            panelPHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Phòng Học", new javax.swing.ImageIcon(getClass().getResource("/images/room-64.png")), panelPH); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -403,6 +389,5 @@ public class QTVPanel extends javax.swing.JFrame {
     private javax.swing.JTable lopTable;
     private javax.swing.JPanel panelHP;
     private javax.swing.JPanel panelLH;
-    private javax.swing.JPanel panelPH;
     // End of variables declaration//GEN-END:variables
 }

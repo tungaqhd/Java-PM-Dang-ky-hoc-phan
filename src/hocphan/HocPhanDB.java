@@ -20,6 +20,24 @@ import javax.swing.JOptionPane;
  */
 public class HocPhanDB extends Database {
 
+    public HocPhan getHocPhan(String maHP) {
+        String getAllSQL = "SELECT * FROM hoc_phan WHERE ma_hp = ?";
+        try {
+            openConnection();
+            PreparedStatement preStmt = cnn.prepareStatement(getAllSQL);
+            preStmt.setString(1, maHP);
+            rs = preStmt.executeQuery();
+            if (rs.next()) {
+                return new HocPhan(rs.getString("ma_in"), rs.getString("ma_hp"), rs.getString("ten_hp"), rs.getInt("tc_lt"), rs.getInt("tc_th"), rs.getInt("tc_khac"));
+            }
+            closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+
     public ArrayList<HocPhan> getHocPhan() {
         ArrayList<HocPhan> dsHp = new ArrayList<HocPhan>();
         String getAllSQL = "SELECT * FROM hoc_phan";

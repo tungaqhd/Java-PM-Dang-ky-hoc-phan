@@ -53,8 +53,6 @@ public class TKBSVForm extends javax.swing.JFrame {
         for (int i = 0; i < dsTiet.size(); ++i) {
             ChiTietDangKyHoc curr = dsTiet.get(i);
             int height = (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau() + 1) * 40 + 3 * (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau());
-            System.out.println(curr.getTiet_bat_dau() + " " + curr.getTiet_ket_thuc() + " " + height);
-            System.out.println(height);
             JLabel mon = new JLabel();
             mon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             mon.setFont(new java.awt.Font("Tahoma", 0, 10));

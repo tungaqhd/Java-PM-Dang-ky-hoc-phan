@@ -6,13 +6,10 @@
 package lich_giang_day;
 
 import chinh.GiangVien;
-import chinh.SinhVien;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import tkb_sv.Algo;
-import tkb_sv.ChiTietDangKyHoc;
 
 /**
  *
@@ -54,8 +51,6 @@ public class LichGiangDay extends javax.swing.JDialog {
         for (int i = 0; i < dsTiet.size(); ++i) {
             ChiTietDay curr = dsTiet.get(i);
             int height = (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau() + 1) * 40 + 3 * (curr.getTiet_ket_thuc() - curr.getTiet_bat_dau());
-            System.out.println(curr.getTiet_bat_dau() + " " + curr.getTiet_ket_thuc() + " " + height);
-            System.out.println(height);
             JLabel mon = new JLabel();
             mon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             mon.setFont(new java.awt.Font("Tahoma", 0, 10));

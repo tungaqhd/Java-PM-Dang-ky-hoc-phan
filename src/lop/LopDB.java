@@ -267,7 +267,6 @@ public class LopDB extends Database {
     public int updateSL(String ma_lop, int tang) {
         int affectedRow = 0;
         String updateSQL = "UPDATE lop SET so_luong = so_luong + ? WHERE ma_lop = ?";
-        System.out.println(ma_lop + " " + tang);
         try {
             openConnection();
             PreparedStatement preStmt = cnn.prepareStatement(updateSQL);
@@ -282,4 +281,20 @@ public class LopDB extends Database {
         return affectedRow;
     }
 
+    public int updateTien(String msv, int tien) {
+        int affectedRow = 0;
+        String updateSQL = "UPDATE sinhvien SET tai_khoan = tai_khoan + ? WHERE ma_sv = ?";
+        try {
+            openConnection();
+            PreparedStatement preStmt = cnn.prepareStatement(updateSQL);
+            preStmt.setInt(1, tien);
+            preStmt.setString(2, msv);
+            affectedRow = preStmt.executeUpdate();
+            closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
+        }
+        return affectedRow;
+    }
 }
