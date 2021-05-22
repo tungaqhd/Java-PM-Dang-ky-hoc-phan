@@ -7,6 +7,8 @@ package gv_xem_lop_day;
 
 import gv_xem_ds_lop.*;
 import chinh.GiangVien;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import lop.Lop;
@@ -29,6 +31,8 @@ public class GVLopForm extends javax.swing.JDialog {
     public GVLopForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
         this.setLocationRelativeTo(null);
     }
     

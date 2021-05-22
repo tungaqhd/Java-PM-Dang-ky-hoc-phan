@@ -8,6 +8,8 @@ package chinh;
 import chinh.GiangVien;
 import gv_xem_ds_lop.DSLopMoChoGV;
 import gv_xem_lop_day.GVLopForm;
+import java.awt.Image;
+import java.awt.Toolkit;
 import lich_giang_day.LichGiangDay;
 
 /**
@@ -23,6 +25,8 @@ public class GiangVienPanel extends javax.swing.JFrame {
     public GiangVienPanel() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
     public void setGiangVien(GiangVien g) {
         gv = g;

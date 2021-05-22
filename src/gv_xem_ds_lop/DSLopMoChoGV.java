@@ -6,6 +6,8 @@
 package gv_xem_ds_lop;
 
 import chinh.GiangVien;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import lop.Lop;
@@ -30,6 +32,8 @@ public class DSLopMoChoGV extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
         HienThi();
     }
     

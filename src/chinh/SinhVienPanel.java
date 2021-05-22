@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package chinh;
+import java.awt.Image;
+import java.awt.Toolkit;
 import sinhvien_xem_ds_lop_mo.SinhVienDSLopForm;
 import tkb_sv.TKB;
 import tkb_sv.TKBSVForm;
@@ -22,6 +24,8 @@ public class SinhVienPanel extends javax.swing.JFrame {
     public SinhVienPanel() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
 
     public void setSV(SinhVien s) {

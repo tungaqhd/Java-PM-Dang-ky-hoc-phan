@@ -31,7 +31,6 @@ public class LopDB extends Database {
             preStmt.setString(1, maLop);
             rs = preStmt.executeQuery();
             if (rs.next()) {
-                System.out.println(rs.getInt("ma_gv"));;
                 return new Lop(rs.getString("ma_lop"), rs.getString("ten_lop"), rs.getInt("cdio"), rs.getInt("si_so"), rs.getString("ma_hp"), rs.getInt("ma_gv"), rs.getString("ho_ten"));
             }
             closeConnection();
@@ -107,7 +106,6 @@ public class LopDB extends Database {
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(dsLop.size());
         return dsLop;
     }
 
@@ -245,7 +243,6 @@ public class LopDB extends Database {
 
     public ArrayList<SinhVien> getSV(String maLop) {
         ArrayList<SinhVien> ds = new ArrayList<SinhVien>();
-        System.out.println(maLop);
         String getSQL = "SELECT sinhvien.* FROM sinhvien JOIN dang_ky_hoc ON sinhvien.ma_sv = dang_ky_hoc.ma_sv JOIN lop ON lop.ma_lop = dang_ky_hoc.ma_lop WHERE lop.ma_lop = ?";
 
         try {

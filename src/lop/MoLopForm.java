@@ -5,6 +5,8 @@
  */
 package lop;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import nganh.Nganh;
@@ -30,6 +32,8 @@ public class MoLopForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
 
     private void HienThi() {
@@ -68,6 +72,7 @@ public class MoLopForm extends javax.swing.JDialog {
         tblMo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mở lớp");
 
         btnThem.setText("Thêm >>");
         btnThem.addActionListener(new java.awt.event.ActionListener() {

@@ -9,6 +9,8 @@ import chinh.SinhVien;
 import chinh.SinhVienPanel;
 import hocphan.HocPhan;
 import hocphan.HocPhanDB;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import lop.Lop;
@@ -38,6 +40,8 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
         pr = (SinhVienPanel) parent;
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
 
     public void setSinhVien(SinhVien s) {

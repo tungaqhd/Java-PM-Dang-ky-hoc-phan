@@ -10,6 +10,8 @@ import hocphan.HocPhanDB;
 import hocphan.HocPhanTable;
 import hocphan.SuaHocPhanForm;
 import hocphan.ThemHocPhanForm;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import lop.Lop;
@@ -39,6 +41,8 @@ public class QTVPanel extends javax.swing.JFrame {
     public QTVPanel() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
         HienThiHP();
         HienThiLop();
     }
@@ -79,6 +83,7 @@ public class QTVPanel extends javax.swing.JFrame {
         btnPhanCong = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản trị - Phần mềm đăng ký học phần HaUI");
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -128,14 +133,15 @@ public class QTVPanel extends javax.swing.JFrame {
             .addGroup(panelHPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelHPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
                     .addGroup(panelHPLayout.createSequentialGroup()
                         .addComponent(btnThemHp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSuaHp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnXoaHp)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelHPLayout.setVerticalGroup(
             panelHPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +218,7 @@ public class QTVPanel extends javax.swing.JFrame {
             .addGroup(panelLHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(panelLHLayout.createSequentialGroup()
                         .addComponent(btnThemLop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,7 +229,7 @@ public class QTVPanel extends javax.swing.JFrame {
                         .addComponent(btnMoLop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPhanCong)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(687, Short.MAX_VALUE))))
         );
         panelLHLayout.setVerticalGroup(
             panelLHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,8 +253,8 @@ public class QTVPanel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

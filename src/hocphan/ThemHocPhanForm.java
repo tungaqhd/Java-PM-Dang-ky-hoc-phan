@@ -6,6 +6,8 @@
 package hocphan;
 
 import chinh.QTVPanel;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,8 @@ public class ThemHocPhanForm extends javax.swing.JDialog {
         pr = (QTVPanel)parent;
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
 
     /**

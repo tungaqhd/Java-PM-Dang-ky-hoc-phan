@@ -8,6 +8,8 @@ package lop;
 import chinh.QTVPanel;
 import hocphan.HocPhan;
 import hocphan.HocPhanDB;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import phong.Phong;
@@ -35,6 +37,8 @@ public class SuaLopForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
         pr = (QTVPanel)parent;
         cbxChuongTrinh.addItem("Thường");
         cbxChuongTrinh.addItem("CDIO");
@@ -114,6 +118,7 @@ public class SuaLopForm extends javax.swing.JDialog {
         btnThoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sửa lớp");
 
         jLabel10.setText("Mã lớp:");
 

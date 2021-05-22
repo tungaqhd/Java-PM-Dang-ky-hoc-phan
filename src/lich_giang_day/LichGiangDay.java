@@ -6,6 +6,8 @@
 package lich_giang_day;
 
 import chinh.GiangVien;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -26,6 +28,8 @@ public class LichGiangDay extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
     
     public void LoadTKB(GiangVien gv)

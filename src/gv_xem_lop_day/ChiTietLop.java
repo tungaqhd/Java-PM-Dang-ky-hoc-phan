@@ -6,6 +6,8 @@
 package gv_xem_lop_day;
 
 import chinh.SinhVien;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class ChiTietLop extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        setIconImage(image);
     }
 
     public void getSinhVien(String ml) {
