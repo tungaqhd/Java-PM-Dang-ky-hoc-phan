@@ -27,6 +27,11 @@ public class SinhVienPanel extends javax.swing.JFrame {
     public void setSV(SinhVien s) {
         sv = s;
         lblWelcome.setText("Xin chào " + s.getHo_ten());
+        updateBalance(s.getTai_khoan());
+    }
+    
+    public void updateBalance(int balance) {
+        lblBalance.setText("Tài khoản của bạn là: "+balance+" vnđ");
     }
 
     /**
@@ -60,7 +65,7 @@ public class SinhVienPanel extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblBalance = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sinh viên - Phần mềm đăng ký học phần HaUI");
@@ -308,8 +313,8 @@ public class SinhVienPanel extends javax.swing.JFrame {
 
         jPanel1.add(jPanel13);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Tài khoản của bạn là: 100.000 vnđ");
+        lblBalance.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblBalance.setText("Tài khoản của bạn là: 100.000 vnđ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,7 +324,7 @@ public class SinhVienPanel extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblBalance)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblWelcome)
@@ -334,7 +339,7 @@ public class SinhVienPanel extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(lblWelcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblBalance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
@@ -397,7 +402,6 @@ public class SinhVienPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -419,6 +423,7 @@ public class SinhVienPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }

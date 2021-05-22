@@ -12,12 +12,14 @@ import lop.*;
  * @author tunga
  */
 public class LopSV {
+
     String ma_lop;
     String ten_lop;
     int cdio;
     int si_so;
     int so_luong;
     String ma_hp;
+    String ten_hp;
     int ma_gv;
     String ho_ten;
     int tiet_bat_dau;
@@ -26,13 +28,14 @@ public class LopSV {
     String diaDiem;
     String trangThai;
 
-    public LopSV(String ma_lop, String ten_lop, int cdio, int si_so, int so_luong, String ma_hp, int ma_gv, String ho_ten, int tiet_bat_dau, int tiet_ket_thuc, String thu, String diaDiem) {
+    public LopSV(String ma_lop, String ten_lop, int cdio, int si_so, int so_luong, String ma_hp, String ten_hp, int ma_gv, String ho_ten, int tiet_bat_dau, int tiet_ket_thuc, String thu, String diaDiem) {
         this.ma_lop = ma_lop;
         this.ten_lop = ten_lop;
         this.cdio = cdio;
         this.si_so = si_so;
         this.so_luong = so_luong;
         this.ma_hp = ma_hp;
+        this.ten_hp = ten_hp;
         this.ma_gv = ma_gv;
         this.ho_ten = ho_ten;
         this.tiet_bat_dau = tiet_bat_dau;
@@ -87,6 +90,14 @@ public class LopSV {
 
     public void setMa_hp(String ma_hp) {
         this.ma_hp = ma_hp;
+    }
+
+    public String getTen_hp() {
+        return ten_hp;
+    }
+
+    public void setTen_hp(String ten_hp) {
+        this.ten_hp = ten_hp;
     }
 
     public int getMa_gv() {
@@ -144,5 +155,5 @@ public class LopSV {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-    
+
 }

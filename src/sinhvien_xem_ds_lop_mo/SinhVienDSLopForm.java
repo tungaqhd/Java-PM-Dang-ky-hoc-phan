@@ -6,6 +6,7 @@
 package sinhvien_xem_ds_lop_mo;
 
 import chinh.SinhVien;
+import chinh.SinhVienPanel;
 import hocphan.HocPhan;
 import hocphan.HocPhanDB;
 import java.util.ArrayList;
@@ -30,8 +31,11 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
     ArrayList<LopSV> ds;
     int idxLop;
 
+    SinhVienPanel pr;
+
     public SinhVienDSLopForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        pr = (SinhVienPanel) parent;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -154,16 +158,19 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
                 throw new IllegalArgumentException("Lớp này trùng lịch với một lớp đã đăng ký");
             } else if (lop.getTrangThai() == "Đã đăng ký") {
                 throw new IllegalArgumentException("Bạn đã đăng ký lớp này rồi");
-            } else if(lop.getSo_luong() >= lop.getSi_so()) {
+            } else if (lop.getSo_luong() >= lop.getSi_so()) {
                 throw new IllegalArgumentException("Lớp này đã đầy");
             }
             HocPhan hp = hocPhanDB.getHocPhan(lop.getMa_hp());
             int hocPhi = 300000 * (hp.getTc_lt() + hp.getTc_khac()) + 2 * 300000 * hp.getTc_th();
-            if(hocPhi > sv.getTai_khoan()) {
+            if (hocPhi > sv.getTai_khoan()) {
                 throw new Exception("Bạn không đủ tiền để đăng ký môn học này");
             }
+            lopDB.updateTien(sv.getMa_sv(), hocPhi * -1);
             dangKyHocDB.dangKyHoc(lop.getMa_lop(), sv.getMa_sv());
             lopDB.updateSL(lop.getMa_lop(), 1);
+            pr.updateBalance(sv.getTai_khoan() - hocPhi);
+            sv.setTai_khoan(sv.getTai_khoan() - hocPhi);
             HienThi();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -180,6 +187,11 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Bạn chưa đăng ký môn này", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        HocPhan hp = hocPhanDB.getHocPhan(lop.getMa_hp());
+        int hocPhi = 300000 * (hp.getTc_lt() + hp.getTc_khac()) + 2 * 300000 * hp.getTc_th();
+        pr.updateBalance(sv.getTai_khoan() + hocPhi);
+        lopDB.updateTien(sv.getMa_sv(), hocPhi);
+        sv.setTai_khoan(sv.getTai_khoan() + hocPhi);
         dangKyHocDB.huyDangKy(lop.getMa_lop(), sv.getMa_sv());
         lopDB.updateSL(lop.getMa_lop(), -1);
         HienThi();

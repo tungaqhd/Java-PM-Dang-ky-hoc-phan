@@ -65,8 +65,6 @@ public class DangNhapDB extends Database {
 
     public QTV dangNhapQTV(String email, String password) {
         QTV qtv = null;
-        System.out.println(email);
-        System.out.println(password);
         String getSQL = "SELECT * FROM qtv WHERE email = ? AND mat_khau = ?";
         try {
             openConnection();

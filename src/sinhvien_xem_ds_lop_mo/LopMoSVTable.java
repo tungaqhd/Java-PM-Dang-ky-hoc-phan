@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class LopMoSVTable extends AbstractTableModel {
 
-    private String name[] = {"Mã lớp", "Tên lớp", "CDIO", "Sĩ số", "Mã học phần", "Tên giảng viên", "Tiết bắt đầu", "Tiết kết thúc", "Thứ", "Địa điểm", "Trạng thái"};
+    private String name[] = {"Mã lớp", "Tên lớp", "CDIO", "Sĩ số", "Tên học phần", "Tên giảng viên", "Tiết bắt đầu", "Tiết kết thúc", "Thứ", "Địa điểm", "Trạng thái"};
     private Class classes[] = {String.class, String.class, Integer.class, Integer.class, String.class, String.class, Integer.class, Integer.class, String.class, String.class, String.class};
 
     ArrayList<LopSV> ds = new ArrayList<LopSV>();
@@ -48,7 +48,7 @@ public class LopMoSVTable extends AbstractTableModel {
             case 3:
                 return ds.get(rowIndex).getSo_luong() + "/" + ds.get(rowIndex).getSi_so();
             case 4:
-                return ds.get(rowIndex).getMa_hp();
+                return ds.get(rowIndex).getTen_hp();
             case 5:
                 return ds.get(rowIndex).getHo_ten();
             case 6:

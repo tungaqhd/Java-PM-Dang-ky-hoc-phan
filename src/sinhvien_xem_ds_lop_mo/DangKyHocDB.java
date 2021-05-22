@@ -18,7 +18,7 @@ import lop.Lop;
  * @author tunga
  */
 public class DangKyHocDB extends Database {
-    
+
     public boolean daDangKy(String msv, String maLop) {
         String getAllSQL = "SELECT * FROM dang_ky_hoc WHERE ma_sv = ? AND ma_lop = ?";
         try {
@@ -42,6 +42,7 @@ public class DangKyHocDB extends Database {
         ArrayList<LopSV> dsLop = new ArrayList<LopSV>();
         String getAllSQL = "SELECT * FROM lop"
                 + " LEFT JOIN giangvien ON giangvien.ma_gv = lop.ma_gv"
+                + " LEFT JOIN hoc_phan ON hoc_phan.ma_hp = lop.ma_hp"
                 + " LEFT JOIN su_dung_phong ON lop.ma_lop = su_dung_phong.ma_lop"
                 + " JOIN phong on phong.ma_phong = su_dung_phong.ma_phong"
                 + " JOIN mo_lop on mo_lop.ma_lop = lop.ma_lop"
@@ -54,7 +55,7 @@ public class DangKyHocDB extends Database {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 String diaDiem = rs.getString("ten_phong") + " - " + rs.getString("toa_nha") + " - Cơ sở " + rs.getString("co_so");
-                dsLop.add(new LopSV(rs.getString("ma_lop"), rs.getString("ten_lop"), rs.getInt("cdio"), rs.getInt("si_so"), rs.getInt("so_luong"), rs.getString("ma_hp"), rs.getInt("ma_gv"), rs.getString("ho_ten"), rs.getInt("tiet_bat_dau"), rs.getInt("tiet_ket_thuc"), rs.getString("thu"), diaDiem));
+                dsLop.add(new LopSV(rs.getString("ma_lop"), rs.getString("ten_lop"), rs.getInt("cdio"), rs.getInt("si_so"), rs.getInt("so_luong"), rs.getString("ma_hp"), rs.getString("ten_hp"), rs.getInt("ma_gv"), rs.getString("ho_ten"), rs.getInt("tiet_bat_dau"), rs.getInt("tiet_ket_thuc"), rs.getString("thu"), diaDiem));
             }
             closeConnection();
         } catch (SQLException ex) {
@@ -104,7 +105,7 @@ public class DangKyHocDB extends Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void huyDangKy(String ma_lop, String msv) {
         String deleteSQL = "DELETE FROM dang_ky_hoc WHERE ma_lop = ? AND ma_sv = ?";
         try {
