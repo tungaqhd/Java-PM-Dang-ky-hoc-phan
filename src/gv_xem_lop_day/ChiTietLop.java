@@ -40,7 +40,7 @@ public class ChiTietLop extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));
         setIconImage(image);
     }
 
@@ -116,16 +116,14 @@ public class ChiTietLop extends javax.swing.JDialog {
         // TODO add your handling code here:        
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet(maLop);
-        String[] headers = {"Mã sinh viên", "Họ và tên", "Email"};
-        
-            Row rowHead = sheet.createRow(0);
-            Cell cellMSVHead = rowHead.createCell(0);
-            cellMSVHead.setCellValue("Mã sinh viên");
-            Cell cellHoTenHead = rowHead.createCell(1);
-            cellHoTenHead.setCellValue("Họ và tên");
-            Cell cellEmailHead = rowHead.createCell(2);
-            cellEmailHead.setCellValue("Email");
-            
+
+        Row rowHead = sheet.createRow(0);
+        Cell cellMSVHead = rowHead.createCell(0);
+        cellMSVHead.setCellValue("Mã sinh viên");
+        Cell cellHoTenHead = rowHead.createCell(1);
+        cellHoTenHead.setCellValue("Họ và tên");
+        Cell cellEmailHead = rowHead.createCell(2);
+        cellEmailHead.setCellValue("Email");
 
         for (int i = 0; i < ds.size(); ++i) {
             Row row = sheet.createRow(i + 1);

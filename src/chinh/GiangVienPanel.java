@@ -55,6 +55,7 @@ public class GiangVienPanel extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Giảng viên - Phần mềm đăng ký môn học HaUI");
 
         hocPhanPanel.setBackground(new java.awt.Color(255, 204, 5));
         hocPhanPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

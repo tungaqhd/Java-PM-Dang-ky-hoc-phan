@@ -31,7 +31,7 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
     LopDB lopDB = new LopDB();
     HocPhanDB hocPhanDB = new HocPhanDB();
     ArrayList<LopSV> ds;
-    int idxLop;
+    int idxLop = -1;
 
     SinhVienPanel pr;
 
@@ -154,6 +154,10 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         // TODO add your handling code here:
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         try {
             LopSV lop = ds.get(idxLop);
             if (idxLop == -1) {
@@ -183,6 +187,10 @@ public class SinhVienDSLopForm extends javax.swing.JDialog {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         LopSV lop = ds.get(idxLop);
         if (idxLop == -1) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);

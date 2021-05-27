@@ -316,7 +316,12 @@ public class QTVPanel extends javax.swing.JFrame {
 
     private void btnXoaLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLopActionPerformed
         // TODO add your handling code here:
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         dbLop.deleteLop(dsLop.get(idxLop).getMa_lop());
+        HienThiLop();
     }//GEN-LAST:event_btnXoaLopActionPerformed
 
     private void lopTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lopTableMouseClicked
@@ -326,6 +331,10 @@ public class QTVPanel extends javax.swing.JFrame {
 
     private void btnMoLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoLopActionPerformed
         // TODO add your handling code here:
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         MoLopForm moLopForm = new MoLopForm(this, rootPaneCheckingEnabled);
         moLopForm.setMaLop(dsLop.get(idxLop).getMa_lop());
         moLopForm.setVisible(true);
@@ -333,6 +342,10 @@ public class QTVPanel extends javax.swing.JFrame {
 
     private void btnPhanCongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhanCongActionPerformed
         // TODO add your handling code here:
+        if (idxLop == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải chọn một lớp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Lop lop = dsLop.get(idxLop);
         if(lop.getMa_gv() != 0) {
             JOptionPane.showMessageDialog(rootPane, "Lớp này đã có giảng viên dạy", "Lỗi", JOptionPane.ERROR_MESSAGE);

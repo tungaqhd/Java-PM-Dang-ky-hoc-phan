@@ -33,40 +33,40 @@ public class SuaLopForm extends javax.swing.JDialog {
     ArrayList<Phong> dsPhong;
     QTVPanel pr;
     Lop lop;
+
     public SuaLopForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));
         setIconImage(image);
-        pr = (QTVPanel)parent;
+        pr = (QTVPanel) parent;
         cbxChuongTrinh.addItem("Thường");
         cbxChuongTrinh.addItem("CDIO");
         HienThiPhong();
     }
-    
-    public void setLop(Lop l)
-    {
+
+    public void setLop(Lop l) {
         HienThiPhong();
         HienThiHP();
-        
+
         lop = l;
         txtMaLop.setText(l.getMa_lop());
         txtTenLop.setText(l.getTen_lop());
         cbxChuongTrinh.setSelectedIndex(l.getCdio());
-        txtSiSo.setText(l.getSi_so()+"");
-        
+        txtSiSo.setText(l.getSi_so() + "");
+
         int hpIdx = dsHp.indexOf(new HocPhan(l.getMa_hp()));
         cbxHocPhan.setSelectedIndex(hpIdx);
-        
+
         cbxThu.setSelectedItem(l.getThu());
-        txtTietBD.setText(l.getTiet_bat_dau()+"");
-        txtTietKT.setText(l.getTiet_ket_thuc()+"");
-        
+        txtTietBD.setText(l.getTiet_bat_dau() + "");
+        txtTietKT.setText(l.getTiet_ket_thuc() + "");
+
         Phong p = dbPhong.getPhongByMaLop(l.getMa_lop());
         int idxDD = dsPhong.indexOf(p);
         cbxPhong.setSelectedIndex(idxDD);
-        
+
         int indxHp = dsHp.indexOf(new HocPhan(l.getMa_hp()));
         cbxHocPhan.setSelectedIndex(indxHp);
     }
@@ -78,7 +78,7 @@ public class SuaLopForm extends javax.swing.JDialog {
             cbxPhong.addItem(p.getThongTin());
         }
     }
-    
+
     private void HienThiHP() {
         dsHp = dbHP.getHocPhan();
         for (HocPhan hp : dsHp) {
@@ -114,7 +114,7 @@ public class SuaLopForm extends javax.swing.JDialog {
         txtTietBD = new javax.swing.JTextField();
         txtTietKT = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -149,10 +149,10 @@ public class SuaLopForm extends javax.swing.JDialog {
             }
         });
 
-        btnThem.setText("Sửa");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                btnSuaActionPerformed(evt);
             }
         });
 
@@ -198,7 +198,7 @@ public class SuaLopForm extends javax.swing.JDialog {
                             .addComponent(txtTietBD)
                             .addComponent(txtTietKT)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnThem)
+                        .addComponent(btnSua)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThoat)))
                 .addContainerGap())
@@ -237,7 +237,7 @@ public class SuaLopForm extends javax.swing.JDialog {
                     .addComponent(btnTim))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
+                    .addComponent(btnSua)
                     .addComponent(btnThoat))
                 .addContainerGap())
         );
@@ -245,7 +245,7 @@ public class SuaLopForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         int idxPhong;
         String thu;
@@ -266,10 +266,13 @@ public class SuaLopForm extends javax.swing.JDialog {
             tietBD = Integer.parseInt(txtTietBD.getText());
             tietKT = Integer.parseInt(txtTietKT.getText());
             if (tietBD <= 0 || tietKT <= 0 || tietBD > 16 || tietKT > 16) {
-                throw new IllegalArgumentException("Tiết không hợp lệ");
+                throw new Exception("Tiết nhập vào không hợp lệ");
             }
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Tiết nhập vào không hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -278,14 +281,14 @@ public class SuaLopForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Phòng này không trống trong khoảng thời gian đã chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         String maHP = dsHp.get(cbxHocPhan.getSelectedIndex()).getMa_hp();
-        
+
         dbLop.editHocPhan(maLop, tenLop, cdio, siSo, maHP);
         sdPhongDB.updateSDPhong(maLop, thu, idPhong, tietBD, tietKT);
         pr.HienThiLop();
         dispose();
-    }//GEN-LAST:event_btnThemActionPerformed
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
@@ -360,7 +363,7 @@ public class SuaLopForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnTim;
     private javax.swing.JComboBox<String> cbxChuongTrinh;

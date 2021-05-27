@@ -32,13 +32,14 @@ public class ThemLopForm extends javax.swing.JDialog {
     ArrayList<HocPhan> dsHp;
     ArrayList<Phong> dsPhong;
     QTVPanel pr;
+
     public ThemLopForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));
         setIconImage(image);
-        pr = (QTVPanel)parent;
+        pr = (QTVPanel) parent;
         cbxChuongTrinh.addItem("Thường");
         cbxChuongTrinh.addItem("CDIO");
 
@@ -235,10 +236,13 @@ public class ThemLopForm extends javax.swing.JDialog {
             tietBD = Integer.parseInt(txtTietBD.getText());
             tietKT = Integer.parseInt(txtTietKT.getText());
             if (tietBD <= 0 || tietKT <= 0 || tietBD > 16 || tietKT > 16) {
-                throw new IllegalArgumentException("Tiết không hợp lệ");
+                throw new Exception("Tiết nhập vào không hợp lệ");
             }
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Tiết nhập vào không hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
 

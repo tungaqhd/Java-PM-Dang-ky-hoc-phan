@@ -55,6 +55,7 @@ public class ThemHocPhanForm extends javax.swing.JDialog {
         txtTcK = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Thêm học phần");
 
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {

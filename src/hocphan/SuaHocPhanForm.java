@@ -66,6 +66,7 @@ public class SuaHocPhanForm extends javax.swing.JDialog {
         txtTcK = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sửa học phần");
 
         btnThem.setText("Sửa");
         btnThem.addActionListener(new java.awt.event.ActionListener() {

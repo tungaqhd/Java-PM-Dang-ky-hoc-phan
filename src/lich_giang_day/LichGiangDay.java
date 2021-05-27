@@ -111,7 +111,7 @@ public class LichGiangDay extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Thời khóa biểu");
+        setTitle("Lịch giảng dạy");
 
         panelChinh.setPreferredSize(new java.awt.Dimension(1345, 764));
 

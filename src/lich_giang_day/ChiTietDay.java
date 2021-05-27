@@ -66,8 +66,7 @@ public class ChiTietDay {
             }
         }
         String phong = ten_phong + " - " + toa_nha + " - Cơ sở " + co_so;
-        String gv = ho_ten + " - " + sdt;
-        String rs = "<html><body style='text-align: center;'>"+ten_hp+"<br />"+tiets+" - "+phong+"<br />"+gv+"</body></html>";
+        String rs = "<html><body style='text-align: center;'>"+ten_hp+"<br />"+tiets+" - "+phong+"</body></html>";
         return rs;
     }
 
