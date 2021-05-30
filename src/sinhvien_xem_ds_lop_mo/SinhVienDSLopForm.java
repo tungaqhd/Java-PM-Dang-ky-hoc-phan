@@ -13,13 +13,11 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lop.Lop;
 import lop.LopDB;
-import lop.LopTable;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class SinhVienDSLopForm extends javax.swing.JDialog {
 

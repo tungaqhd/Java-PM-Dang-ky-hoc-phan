@@ -21,12 +21,13 @@ public class ThemHocPhanForm extends javax.swing.JDialog {
      */
     QTVPanel pr;
     HocPhanDB db = new HocPhanDB();
+
     public ThemHocPhanForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        pr = (QTVPanel)parent;
+        pr = (QTVPanel) parent;
         initComponents();
         this.setLocationRelativeTo(null);
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));
         setIconImage(image);
     }
 
@@ -157,16 +158,20 @@ public class ThemHocPhanForm extends javax.swing.JDialog {
         String maIn = txtMaIn.getText();
         String maHp = txtMaHp.getText();
         String tenHp = txtTenHp.getText();
-        int tcLt = Integer.parseInt(txtTcLt.getText());
-        int tcTh = Integer.parseInt(txtTcTh.getText());
-        int tcK = Integer.parseInt(txtTcK.getText());
 
-        int rs = db.addHocPhan(maIn, maHp, tenHp, tcLt, tcTh, tcK);
-        if(rs == 1) {
+        try {
+
+            int tcLt = Integer.parseInt(txtTcLt.getText());
+            int tcTh = Integer.parseInt(txtTcTh.getText());
+            int tcK = Integer.parseInt(txtTcK.getText());
+
+            db.addHocPhan(maIn, maHp, tenHp, tcLt, tcTh, tcK);
             pr.HienThiHP();
             dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Có lỗi khi thêm!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException err) {
+            JOptionPane.showMessageDialog(null, "Số tín chỉ không hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Thêm thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

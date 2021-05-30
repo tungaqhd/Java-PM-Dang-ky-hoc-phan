@@ -22,23 +22,23 @@ public class SuaHocPhanForm extends javax.swing.JDialog {
     QTVPanel pr;
     HocPhanDB db = new HocPhanDB();
     HocPhan hp;
+
     public SuaHocPhanForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        pr = (QTVPanel)parent;
+        pr = (QTVPanel) parent;
         initComponents();
         this.setLocationRelativeTo(null);
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haui-logo.jpg"));
         setIconImage(image);
     }
-    
-    public void setHp(HocPhan h)
-    {
-        txtMaIn.setText( h.getMa_in());
+
+    public void setHp(HocPhan h) {
+        txtMaIn.setText(h.getMa_in());
         txtMaHp.setText(h.getMa_hp());
         txtTenHp.setText(h.getTen_hp());
-        txtTcLt.setText(h.getTc_lt()+"");
-        txtTcTh.setText(h.getTc_th()+"");
-        txtTcK.setText(h.getTc_khac()+"");
+        txtTcLt.setText(h.getTc_lt() + "");
+        txtTcTh.setText(h.getTc_th() + "");
+        txtTcK.setText(h.getTc_khac() + "");
     }
 
     /**
@@ -167,18 +167,19 @@ public class SuaHocPhanForm extends javax.swing.JDialog {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        String maIn = txtMaIn.getText();
-        String maHp = txtMaHp.getText();
-        String tenHp = txtTenHp.getText();
-        int tcLt = Integer.parseInt(txtTcLt.getText());
-        int tcTh = Integer.parseInt(txtTcTh.getText());
-        int tcK = Integer.parseInt(txtTcK.getText());
-
-        int rs = db.updateHocPhan(maIn, maHp, tenHp, tcLt, tcTh, tcK);
-        if(rs == 1) {
+        try {
+            String maIn = txtMaIn.getText();
+            String maHp = txtMaHp.getText();
+            String tenHp = txtTenHp.getText();
+            int tcLt = Integer.parseInt(txtTcLt.getText());
+            int tcTh = Integer.parseInt(txtTcTh.getText());
+            int tcK = Integer.parseInt(txtTcK.getText());
+            db.updateHocPhan(maIn, maHp, tenHp, tcLt, tcTh, tcK);
             pr.HienThiHP();
             dispose();
-        } else {
+        } catch (NumberFormatException err) {
+            JOptionPane.showMessageDialog(null, "Số tín chỉ không hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Có lỗi khi thêm!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnThemActionPerformed

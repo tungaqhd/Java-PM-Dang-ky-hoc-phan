@@ -25,7 +25,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class ChiTietLop extends javax.swing.JDialog {
 

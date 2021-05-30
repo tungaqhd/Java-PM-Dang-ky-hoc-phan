@@ -284,7 +284,7 @@ public class SuaLopForm extends javax.swing.JDialog {
 
         String maHP = dsHp.get(cbxHocPhan.getSelectedIndex()).getMa_hp();
 
-        dbLop.editHocPhan(maLop, tenLop, cdio, siSo, maHP);
+        dbLop.editLop(maLop, tenLop, cdio, siSo, maHP);
         sdPhongDB.updateSDPhong(maLop, thu, idPhong, tietBD, tietKT);
         pr.HienThiLop();
         dispose();

@@ -109,7 +109,7 @@ public class LopDB extends Database {
         return dsLop;
     }
 
-    public int addHocPhan(String ma_lop, String ten_lop, int cdio, int si_so, String ma_hp) {
+    public int addLop(String ma_lop, String ten_lop, int cdio, int si_so, String ma_hp) {
         int affectedRow = 0;
         String insertSQL = "INSERT INTO lop(ma_lop, ten_lop, cdio, si_so, ma_hp)VALUES(?, ?, ?, ?, ?)";
         try {
@@ -129,7 +129,7 @@ public class LopDB extends Database {
         return affectedRow;
     }
 
-    public int editHocPhan(String ma_lop, String ten_lop, int cdio, int si_so, String ma_hp) {
+    public int editLop(String ma_lop, String ten_lop, int cdio, int si_so, String ma_hp) {
         int affectedRow = 0;
         String updateSQL = "UPDATE lop SET ten_lop=?, cdio=?, si_so=?, ma_hp=? WHERE ma_lop=?";
         try {

@@ -71,8 +71,12 @@ public class HocPhanDB extends Database {
             affectedRow = preStmt.executeUpdate();
             closeConnection();
         } catch (SQLException ex) {
+            if (ex.getErrorCode() == 2627) {
+                JOptionPane.showMessageDialog(null, "Mã in hoặc mã học phần bị trùng", "Lỗi", JOptionPane.CANCEL_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
+            }
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Thêm thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
         }
         return affectedRow;
     }
@@ -92,8 +96,12 @@ public class HocPhanDB extends Database {
             affectedRow = preStmt.executeUpdate();
             closeConnection();
         } catch (SQLException ex) {
+            if (ex.getErrorCode() == 2627) {
+                JOptionPane.showMessageDialog(null, "Mã in bị trùng", "Lỗi", JOptionPane.CANCEL_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
+            }
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Lỗi", JOptionPane.CANCEL_OPTION);
         }
         return affectedRow;
     }

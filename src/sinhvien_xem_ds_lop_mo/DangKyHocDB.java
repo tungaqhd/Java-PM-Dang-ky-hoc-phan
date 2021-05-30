@@ -11,11 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lop.Lop;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class DangKyHocDB extends Database {
 

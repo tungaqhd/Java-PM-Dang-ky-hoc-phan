@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class ChiTietLopTable extends AbstractTableModel {
     

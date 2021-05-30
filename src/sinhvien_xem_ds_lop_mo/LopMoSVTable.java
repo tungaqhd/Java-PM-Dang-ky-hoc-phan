@@ -5,13 +5,12 @@
  */
 package sinhvien_xem_ds_lop_mo;
 
-import lop.*;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class LopMoSVTable extends AbstractTableModel {
 

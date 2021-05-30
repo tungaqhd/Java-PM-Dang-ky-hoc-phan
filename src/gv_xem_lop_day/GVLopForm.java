@@ -17,7 +17,7 @@ import lop.LopTable;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class GVLopForm extends javax.swing.JDialog {
 

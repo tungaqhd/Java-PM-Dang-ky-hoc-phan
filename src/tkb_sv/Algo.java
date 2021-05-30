@@ -50,38 +50,6 @@ public class Algo {
                 rs.add(ct);
             }
         }
-//        ArrayList<Integer> dsTiet = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 7, 8, 9, 13, 15, 17));
-//        ArrayList<Integer> dsTiet2 = new ArrayList<Integer>(Arrays.asList(3, 4, 5, 8, 9, 10, 11, 12, 16, 17));
-//        ArrayList<Integer> dsTiet3 = new ArrayList<Integer>(Arrays.asList(6, 7, 8, 11, 12, 15, 16, 17));
-//        
-//        dsTiet = dsTiet3;
-//        ArrayList<Integer> rs = new ArrayList<Integer>();
-//
-//        int tmp = 0;
-//        for (int i = 0; i < dsTiet.size(); ++i) {
-//            if (i == 0) {
-//                if (dsTiet.get(i) != 1) {
-//                    rs.add(dsTiet.get(0) - 1);
-//                }
-//                    ++tmp;
-//            } else if (i != dsTiet.size() - 1) {
-//                if (dsTiet.get(i) != dsTiet.get(i - 1) + 1) {
-//                    rs.add(tmp);
-//                    rs.add(dsTiet.get(i) - dsTiet.get(i - 1) - 1);
-//                    tmp = 1;
-//                } else {
-//                    ++tmp;
-//                }
-//            } else {
-//                rs.add(tmp);
-//                if(dsTiet.get(i-1) != 16) {
-//                    rs.add(16 - dsTiet.get(i-1));
-//                }
-//            }
-//            System.out.println(tmp);
-//        }
-//        
-//        System.out.println(rs);
     }
 
     public ArrayList<ChiTietDangKyHoc> getList(ArrayList<ChiTietDangKyHoc> ds) {

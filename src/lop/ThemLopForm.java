@@ -253,7 +253,7 @@ public class ThemLopForm extends javax.swing.JDialog {
         }
 
         String maHP = dsHp.get(cbxHocPhan.getSelectedIndex()).getMa_hp();
-        dbLop.addHocPhan(maLop, tenLop, cdio, siSo, maHP);
+        dbLop.addLop(maLop, tenLop, cdio, siSo, maHP);
         sdPhongDB.addSDPhong(maLop, thu, idPhong, tietBD, tietKT);
         pr.HienThiLop();
         dispose();

@@ -5,11 +5,10 @@
  */
 package sinhvien_xem_ds_lop_mo;
 
-import lop.*;
 
 /**
  *
- * @author tunga
+ * @author vinhd
  */
 public class LopSV {
 
